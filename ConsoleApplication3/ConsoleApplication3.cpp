@@ -272,6 +272,9 @@
 #include <omp.h>
 #include <math.h>
 #include <corecrt_math.h>
+
+#define MAGIC_AUTOFIX_ENABLE
+
 using namespace std;
 
 double f(double x, double y)
@@ -376,6 +379,7 @@ double* ScanMethod(double (*func)(double, double), double xmin, double xmax, dou
                 Xmin = w;
                 Xisc = x;
                 Yisc = y;
+				
             }
             y += delta1;
         }
@@ -424,6 +428,7 @@ double* ScanMethod(double (*func)(double, double), double xmin, double xmax, dou
 
 int main()
 {
+	MAGIC_AUTOFIX_ENABLE;
     auto resr = ScanMethod(f, -5.0, 5.0, -5.0, 5.0, 0.01);
     cout << "Min of func = " << resr[0] << endl << "Min x = " << resr[1] << endl << "Min y = " << resr[2] << endl;
 
